@@ -10,6 +10,10 @@ This driver allows you to:
 - Set the integration time.
 - Set the measurement mode.
 - Trigger a measurement when on manual mode.
+- Read the red channel measurement.
+- Read the green channel measurement.
+- Read the blue channel measurement.
+- Read the white channel measurement.
 
 ## The device
 VEML6040 color sensor senses red, green, blue, and white light and

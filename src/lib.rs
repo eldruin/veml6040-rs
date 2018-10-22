@@ -8,6 +8,10 @@
 //! - Set the integration time.
 //! - Set the measurement mode.
 //! - Trigger a measurement when on manual mode.
+//! - Read the red channel measurement.
+//! - Read the green channel measurement.
+//! - Read the blue channel measurement.
+//! - Read the white channel measurement.
 //!
 //! ## The device
 //!
@@ -82,6 +86,10 @@ struct Register;
 
 impl Register {
     const CONFIG : u8 = 0x00;
+    const R_DATA : u8 = 0x08;
+    const G_DATA : u8 = 0x09;
+    const B_DATA : u8 = 0x0A;
+    const W_DATA : u8 = 0x0B;
 }
 
 struct BitFlags;
@@ -120,3 +128,4 @@ where
 }
 
 mod configuration;
+mod reading;
