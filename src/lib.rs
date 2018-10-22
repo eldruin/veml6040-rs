@@ -32,7 +32,70 @@
 //!
 //! Application note:
 //! - [VEML6040 AN](https://www.vishay.com/docs/84331/designingveml6040.pdf)
-//! 
+//!
+//! ## Usage examples (see also examples folder)
+//!
+//! ### Enable and read the color measurement
+//!
+//! Import this crate and an `embedded_hal` implementation, then instantiate
+//! the device:
+//!
+//! ```no_run
+//! extern crate linux_embedded_hal as hal;
+//! extern crate veml6040;
+//!
+//! use hal::I2cdev;
+//! use veml6040::Veml6040;
+//!
+//! # fn main() {
+//! let dev = I2cdev::new("/dev/i2c-1").unwrap();
+//! let mut sensor = Veml6040::new(dev);
+//! sensor.enable().unwrap();
+//!
+//! let red = sensor.read_red_channel().unwrap();
+//! let green = sensor.read_green_channel().unwrap();
+//! let blue = sensor.read_blue_channel().unwrap();
+//! let white = sensor.read_white_channel().unwrap();
+//!
+//! println!("Measurements: red = {}, green = {}, blue = {}, white = {}",
+//!          red, green, blue, white);
+//! # }
+//! ```
+//!
+//! ### Set the integration time to 320ms
+//!
+//! ```no_run
+//! extern crate linux_embedded_hal as hal;
+//! extern crate veml6040;
+//!
+//! use hal::I2cdev;
+//! use veml6040::{ Veml6040, IntegrationTime };
+//!
+//! # fn main() {
+//! let dev = I2cdev::new("/dev/i2c-1").unwrap();
+//! let mut sensor = Veml6040::new(dev);
+//! sensor.enable().unwrap();
+//! sensor.set_integration_time(IntegrationTime::_320ms).unwrap();
+//! # }
+//! ```
+//!
+//! ### Set the measurement mode to manual and trigger a measurement
+//!
+//! ```no_run
+//! extern crate linux_embedded_hal as hal;
+//! extern crate veml6040;
+//!
+//! use hal::I2cdev;
+//! use veml6040::{ Veml6040, MeasurementMode };
+//!
+//! # fn main() {
+//! let dev = I2cdev::new("/dev/i2c-1").unwrap();
+//! let mut sensor = Veml6040::new(dev);
+//! sensor.enable().unwrap();
+//! sensor.set_measurement_mode(MeasurementMode::Manual).unwrap();
+//! sensor.trigger_measurement().unwrap();
+//! # }
+//! ```
 
 #![deny(unsafe_code)]
 #![deny(missing_docs)]
