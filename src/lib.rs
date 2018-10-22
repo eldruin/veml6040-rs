@@ -63,6 +63,28 @@
 //! # }
 //! ```
 //!
+//! ### Read all the channels at once
+//!
+//! ```no_run
+//! extern crate linux_embedded_hal as hal;
+//! extern crate veml6040;
+//!
+//! use hal::I2cdev;
+//! use veml6040::Veml6040;
+//!
+//! # fn main() {
+//! let dev = I2cdev::new("/dev/i2c-1").unwrap();
+//! let mut sensor = Veml6040::new(dev);
+//! sensor.enable().unwrap();
+//!
+//! let measurement = sensor.read_all_channels().unwrap();
+//!
+//! println!("Measurements: red = {}, green = {}, blue = {}, white = {}",
+//!          measurement.red, measurement.green, measurement.blue,
+//!          measurement.white);
+//! # }
+//! ```
+//!
 //! ### Set the integration time to 320ms
 //!
 //! ```no_run
