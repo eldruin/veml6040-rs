@@ -5,6 +5,7 @@
 //!
 //! This driver allows you to:
 //! - Enable/disable the sensor.
+//! - Set the integration time.
 //! - Set the measurement mode.
 //! - Trigger a measurement when on manual mode.
 //!
@@ -56,6 +57,23 @@ pub enum MeasurementMode {
     /// Measurements are only triggered manually. See `trigger_measurement()`.
     /// This is also called "force mode" or "ActiveForce" mode.
     Manual
+}
+
+/// Integration time
+#[derive(Debug, Clone, PartialEq)]
+pub enum IntegrationTime {
+    /// 40 ms
+    _40ms,
+    /// 80 ms
+    _80ms,
+    /// 160 ms
+    _160ms,
+    /// 320 ms
+    _320ms,
+    /// 640 ms
+    _640ms,
+    /// 1280 ms
+    _1280ms
 }
 
 const DEVICE_ADDRESS: u8 = 0x10;

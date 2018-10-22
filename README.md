@@ -7,6 +7,7 @@ sensor, based on the [`embedded-hal`] traits.
 
 This driver allows you to:
 - Enable/disable the sensor.
+- Set the integration time.
 - Set the measurement mode.
 - Trigger a measurement when on manual mode.
 
