@@ -12,6 +12,7 @@
 //! - Read the green channel measurement.
 //! - Read the blue channel measurement.
 //! - Read the white channel measurement.
+//! - Read measurement of all channels at once.
 //!
 //! ## The device
 //!
@@ -142,6 +143,19 @@ pub enum IntegrationTime {
     /// 1280 ms
     _1280ms
 }
+
+/// Result of measurement of all channels
+pub struct AllChannelMeasurement {
+    /// Red channel measurement.
+    pub red: u16,
+    /// Green channel measurement.
+    pub green: u16,
+    /// Blue channel measurement.
+    pub blue: u16,
+    /// White channel measurement.
+    pub white: u16
+}
+
 
 const DEVICE_ADDRESS: u8 = 0x10;
 

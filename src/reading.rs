@@ -1,7 +1,7 @@
 
 extern crate embedded_hal as hal;
 use hal::blocking::i2c;
-use super::{ Veml6040, DEVICE_ADDRESS, Register, Error };
+use super::{ Veml6040, DEVICE_ADDRESS, Register, AllChannelMeasurement, Error };
 
 impl<I2C, E> Veml6040<I2C>
 where
@@ -25,6 +25,20 @@ where
     /// Read the white channel measurement data.
     pub fn read_white_channel(&mut self) -> Result<u16, Error<E>> {
         self.read_channel(Register::W_DATA)
+    }
+
+    /// Read the measurement data of all channels at once.
+    pub fn read_all_channels(&mut self) -> Result<AllChannelMeasurement, Error<E>> {
+        let mut data = [0; 8];
+        self.i2c
+            .write_read(DEVICE_ADDRESS, &[Register::R_DATA], &mut data)
+            .map_err(Error::I2C)?;
+        Ok(AllChannelMeasurement {
+            red:   (data[1] as u16) << 8 | data[0] as u16,
+            green: (data[3] as u16) << 8 | data[2] as u16,
+            blue:  (data[5] as u16) << 8 | data[4] as u16,
+            white: (data[7] as u16) << 8 | data[6] as u16,
+           })
     }
 
     fn read_channel(&mut self, first_register: u8) -> Result<u16, Error<E>> {

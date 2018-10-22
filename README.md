@@ -14,6 +14,7 @@ This driver allows you to:
 - Read the green channel measurement.
 - Read the blue channel measurement.
 - Read the white channel measurement.
+- Read measurement of all channels at once.
 
 ## The device
 VEML6040 color sensor senses red, green, blue, and white light and
