@@ -31,7 +31,7 @@ where
         let mut data = [0; 2];
         self.i2c
             .write_read(DEVICE_ADDRESS, &[first_register], &mut data)
-            .map_err(Error::I2C)?;
-        Ok((data[1] as u16) << 8 | data[0] as u16)
+            .map_err(Error::I2C)
+            .and(Ok((data[1] as u16) << 8 | data[0] as u16))
     }
 }
