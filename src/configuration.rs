@@ -21,8 +21,8 @@ where
 
     /// Set the integration time.
     pub fn set_integration_time(&mut self, it: IntegrationTime) -> Result<(), Error<E>> {
-        let it_bits = 0b0111_0000;
-        let config = self.config & !it_bits;
+        const IT_BITS: u8 = 0b0111_0000;
+        let config = self.config & !IT_BITS;
         match it {
             IntegrationTime::_40ms   => self.write_config(config | 0b0000_0000),
             IntegrationTime::_80ms   => self.write_config(config | 0b0001_0000),
