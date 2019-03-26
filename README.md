@@ -1,4 +1,11 @@
-# Rust VEML6040 RGBW Color Sensor [![crates.io](https://img.shields.io/crates/v/veml6040.svg)](https://crates.io/crates/veml6040) [![Docs](https://docs.rs/veml6040/badge.svg)](https://docs.rs/veml6040) [![Build Status](https://travis-ci.org/eldruin/veml6040-rs.svg?branch=master)](https://travis-ci.org/eldruin/veml6040-rs)
+# Rust VEML6040 RGBW Color Sensor
+
+[![crates.io](https://img.shields.io/crates/v/veml6040.svg)](https://crates.io/crates/veml6040)
+[![Docs](https://docs.rs/veml6040/badge.svg)](https://docs.rs/veml6040)
+[![Build Status](https://travis-ci.org/eldruin/veml6040-rs.svg?branch=master)](https://travis-ci.org/eldruin/veml6040-rs)
+[![Coverage Status](https://coveralls.io/repos/github/eldruin/veml6040-rs/badge.svg?branch=master)](https://coveralls.io/github/eldruin/veml6040-rs?branch=master)
+![Maintenance Intention](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg)
+
 
 This is a platform agnostic Rust driver for the VEML6040 RGBW color light
 sensor, based on the [`embedded-hal`] traits.
