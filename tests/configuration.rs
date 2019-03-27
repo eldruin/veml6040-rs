@@ -1,15 +1,16 @@
-extern crate veml6040;
 extern crate embedded_hal_mock as hal;
-use hal::i2c::{ Transaction as I2cTransaction };
-use veml6040::{ MeasurementMode, IntegrationTime };
+extern crate veml6040;
+use hal::i2c::Transaction as I2cTransaction;
+use veml6040::{IntegrationTime, MeasurementMode};
 
 mod common;
-use common::{ DEVICE_ADDRESS, setup, Register };
+use common::{setup, Register, DEVICE_ADDRESS};
 
 fn get_write_expectation(config: u8) -> [I2cTransaction; 1] {
-    [
-        I2cTransaction::write(DEVICE_ADDRESS, vec![Register::CONFIG, config, 0])
-    ]
+    [I2cTransaction::write(
+        DEVICE_ADDRESS,
+        vec![Register::CONFIG, config, 0],
+    )]
 }
 
 macro_rules! config_test {
@@ -24,7 +25,7 @@ macro_rules! config_test {
     };
 }
 
-config_test!(can_enable,  enable,  0);
+config_test!(can_enable, enable, 0);
 config_test!(can_disable, disable, 1);
 
 macro_rules! config_param_test {
@@ -39,8 +40,8 @@ macro_rules! config_param_test {
     };
 }
 
-config_param_test!(can_set_mm_auto,   set_measurement_mode, MeasurementMode::Auto,   0);
-config_param_test!(can_set_mm_manual, set_measurement_mode, MeasurementMode::Manual, 2);
+config_param_test!(set_mm_auto, set_measurement_mode, MeasurementMode::Auto, 0);
+config_param_test!(set_mm_man, set_measurement_mode, MeasurementMode::Manual, 2);
 
 config_test!(can_trigger_measurement, trigger_measurement, 4);
 

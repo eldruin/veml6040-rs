@@ -1,11 +1,12 @@
 extern crate embedded_hal as hal;
+use super::{
+    BitFlags, Error, IntegrationTime, MeasurementMode, Register, Veml6040, DEVICE_ADDRESS,
+};
 use hal::blocking::i2c;
-use super::{ Veml6040, DEVICE_ADDRESS, Register, BitFlags, MeasurementMode,
-             IntegrationTime, Error };
 
 impl<I2C, E> Veml6040<I2C>
 where
-    I2C: i2c::Write<Error = E>
+    I2C: i2c::Write<Error = E>,
 {
     /// Enable the sensor.
     pub fn enable(&mut self) -> Result<(), Error<E>> {
@@ -15,7 +16,7 @@ where
 
     /// Disable the sensor (shutdown).
     pub fn disable(&mut self) -> Result<(), Error<E>> {
-        let config  = self.config;
+        let config = self.config;
         self.write_config(config | BitFlags::SHUTDOWN)
     }
 
@@ -24,11 +25,11 @@ where
         const IT_BITS: u8 = 0b0111_0000;
         let config = self.config & !IT_BITS;
         match it {
-            IntegrationTime::_40ms   => self.write_config(config),
-            IntegrationTime::_80ms   => self.write_config(config | 0b0001_0000),
-            IntegrationTime::_160ms  => self.write_config(config | 0b0010_0000),
-            IntegrationTime::_320ms  => self.write_config(config | 0b0011_0000),
-            IntegrationTime::_640ms  => self.write_config(config | 0b0100_0000),
+            IntegrationTime::_40ms => self.write_config(config),
+            IntegrationTime::_80ms => self.write_config(config | 0b0001_0000),
+            IntegrationTime::_160ms => self.write_config(config | 0b0010_0000),
+            IntegrationTime::_320ms => self.write_config(config | 0b0011_0000),
+            IntegrationTime::_640ms => self.write_config(config | 0b0100_0000),
             IntegrationTime::_1280ms => self.write_config(config | 0b0101_0000),
         }
     }
@@ -37,8 +38,8 @@ where
     pub fn set_measurement_mode(&mut self, mode: MeasurementMode) -> Result<(), Error<E>> {
         let config = self.config;
         match mode {
-            MeasurementMode::Auto   => self.write_config(config & !BitFlags::AF),
-            MeasurementMode::Manual => self.write_config(config |  BitFlags::AF)
+            MeasurementMode::Auto => self.write_config(config & !BitFlags::AF),
+            MeasurementMode::Manual => self.write_config(config | BitFlags::AF),
         }
     }
 
@@ -48,7 +49,10 @@ where
     pub fn trigger_measurement(&mut self) -> Result<(), Error<E>> {
         // This bit is not stored to avoid unintended triggers.
         self.i2c
-            .write(DEVICE_ADDRESS, &[Register::CONFIG, self.config | BitFlags::TRIG, 0])
+            .write(
+                DEVICE_ADDRESS,
+                &[Register::CONFIG, self.config | BitFlags::TRIG, 0],
+            )
             .map_err(Error::I2C)
     }
 

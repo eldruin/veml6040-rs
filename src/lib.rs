@@ -146,7 +146,7 @@ pub enum MeasurementMode {
     ///
     /// Measurements are only triggered manually. See `trigger_measurement()`.
     /// This is also called "force mode" or "ActiveForce" mode.
-    Manual
+    Manual,
 }
 
 /// Integration time
@@ -163,7 +163,7 @@ pub enum IntegrationTime {
     /// 640 ms
     _640ms,
     /// 1280 ms
-    _1280ms
+    _1280ms,
 }
 
 /// Result of measurement of all channels
@@ -175,28 +175,27 @@ pub struct AllChannelMeasurement {
     /// Blue channel measurement.
     pub blue: u16,
     /// White channel measurement.
-    pub white: u16
+    pub white: u16,
 }
-
 
 const DEVICE_ADDRESS: u8 = 0x10;
 
 struct Register;
 
 impl Register {
-    const CONFIG : u8 = 0x00;
-    const R_DATA : u8 = 0x08;
-    const G_DATA : u8 = 0x09;
-    const B_DATA : u8 = 0x0A;
-    const W_DATA : u8 = 0x0B;
+    const CONFIG: u8 = 0x00;
+    const R_DATA: u8 = 0x08;
+    const G_DATA: u8 = 0x09;
+    const B_DATA: u8 = 0x0A;
+    const W_DATA: u8 = 0x0B;
 }
 
 struct BitFlags;
 
 impl BitFlags {
-    const SHUTDOWN : u8 = 0b0000_0001;
-    const AF       : u8 = 0b0000_0010;
-    const TRIG     : u8 = 0b0000_0100;
+    const SHUTDOWN: u8 = 0b0000_0001;
+    const AF: u8 = 0b0000_0010;
+    const TRIG: u8 = 0b0000_0100;
 }
 
 /// VEML6040 device driver.
@@ -204,20 +203,17 @@ impl BitFlags {
 pub struct Veml6040<I2C> {
     /// The concrete I²C device implementation.
     i2c: I2C,
-     /// Configuration register status.
+    /// Configuration register status.
     config: u8,
 }
 
 impl<I2C, E> Veml6040<I2C>
 where
-    I2C: i2c::Write<Error = E>
+    I2C: i2c::Write<Error = E>,
 {
     /// Create new instance of the VEML6040 device.
     pub fn new(i2c: I2C) -> Self {
-        Veml6040 {
-            i2c,
-            config: 0
-        }
+        Veml6040 { i2c, config: 0 }
     }
 
     /// Destroy driver instance, return I²C bus instance.
