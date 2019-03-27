@@ -44,9 +44,20 @@ config_param_test!(can_set_mm_manual, set_measurement_mode, MeasurementMode::Man
 
 config_test!(can_trigger_measurement, trigger_measurement, 4);
 
-config_param_test!(can_set_it_40,   set_integration_time, IntegrationTime::_40ms,   0);
-config_param_test!(can_set_it_80,   set_integration_time, IntegrationTime::_80ms,   1 << 4);
-config_param_test!(can_set_it_160,  set_integration_time, IntegrationTime::_160ms,  2 << 4);
-config_param_test!(can_set_it_320,  set_integration_time, IntegrationTime::_320ms,  3 << 4);
-config_param_test!(can_set_it_640,  set_integration_time, IntegrationTime::_640ms,  4 << 4);
-config_param_test!(can_set_it_1280, set_integration_time, IntegrationTime::_1280ms, 5 << 4);
+macro_rules! set_it_test {
+    ($name:ident, $variant:ident, $expected:expr) => {
+        config_param_test!(
+            $name,
+            set_integration_time,
+            IntegrationTime::$variant,
+            $expected
+        );
+    };
+}
+
+set_it_test!(can_set_it_40, _40ms, 0);
+set_it_test!(can_set_it_80, _80ms, 1 << 4);
+set_it_test!(can_set_it_160, _160ms, 2 << 4);
+set_it_test!(can_set_it_320, _320ms, 3 << 4);
+set_it_test!(can_set_it_640, _640ms, 4 << 4);
+set_it_test!(can_set_it_1280, _1280ms, 5 << 4);
