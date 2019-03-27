@@ -21,7 +21,7 @@ where
     pub fn read_blue_channel(&mut self) -> Result<u16, Error<E>> {
         self.read_channel(Register::B_DATA)
     }
- 
+
     /// Read the white channel measurement data.
     pub fn read_white_channel(&mut self) -> Result<u16, Error<E>> {
         self.read_channel(Register::W_DATA)
@@ -34,10 +34,10 @@ where
             .write_read(DEVICE_ADDRESS, &[Register::R_DATA], &mut data)
             .map_err(Error::I2C)?;
         Ok(AllChannelMeasurement {
-            red:   (data[1] as u16) << 8 | data[0] as u16,
-            green: (data[3] as u16) << 8 | data[2] as u16,
-            blue:  (data[5] as u16) << 8 | data[4] as u16,
-            white: (data[7] as u16) << 8 | data[6] as u16,
+            red:   u16::from(data[1]) << 8 | u16::from(data[0]),
+            green: u16::from(data[3]) << 8 | u16::from(data[2]),
+            blue:  u16::from(data[5]) << 8 | u16::from(data[4]),
+            white: u16::from(data[7]) << 8 | u16::from(data[6]),
            })
     }
 
@@ -46,6 +46,6 @@ where
         self.i2c
             .write_read(DEVICE_ADDRESS, &[first_register], &mut data)
             .map_err(Error::I2C)
-            .and(Ok((data[1] as u16) << 8 | data[0] as u16))
+            .and(Ok(u16::from(data[1]) << 8 | u16::from(data[0])))
     }
 }
