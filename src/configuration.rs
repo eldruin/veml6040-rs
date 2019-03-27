@@ -24,7 +24,7 @@ where
         const IT_BITS: u8 = 0b0111_0000;
         let config = self.config & !IT_BITS;
         match it {
-            IntegrationTime::_40ms   => self.write_config(config | 0b0000_0000),
+            IntegrationTime::_40ms   => self.write_config(config),
             IntegrationTime::_80ms   => self.write_config(config | 0b0001_0000),
             IntegrationTime::_160ms  => self.write_config(config | 0b0010_0000),
             IntegrationTime::_320ms  => self.write_config(config | 0b0011_0000),
