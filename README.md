@@ -39,6 +39,37 @@ Datasheet: [VEML6040](https://www.vishay.com/docs/84276/veml6040.pdf)
 
 Application note: [VEML6040 AN](https://www.vishay.com/docs/84331/designingveml6040.pdf)
 
+## Usage
+
+To use this driver, import this crate and an `embedded_hal` implementation,
+then instantiate the device.
+
+Please find additional examples using hardware in this repository: [driver-examples]
+
+[driver-examples]: https://github.com/eldruin/driver-examples
+
+```rust
+extern crate linux_embedded_hal as hal;
+extern crate veml6040;
+use veml6040::Veml6040;
+
+fn main() {
+    let dev = hal::I2cdev::new("/dev/i2c-1").unwrap();
+    let mut sensor = Veml6040::new(dev);
+    sensor.enable().unwrap();
+
+    let red = sensor.read_red_channel().unwrap();
+    let green = sensor.read_green_channel().unwrap();
+    let blue = sensor.read_blue_channel().unwrap();
+    let white = sensor.read_white_channel().unwrap();
+
+    println!(
+        "Measurements: R: {}, G: {}, B: {}, W: {}",
+        red, green, blue, white
+    );
+}
+```
+
 ## Support
 
 For questions, issues, feature requests, and other changes, please file an
