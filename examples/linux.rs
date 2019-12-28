@@ -1,11 +1,9 @@
-extern crate linux_embedded_hal;
+extern crate linux_embedded_hal as hal;
 extern crate veml6040;
-
-use linux_embedded_hal::I2cdev;
 use veml6040::Veml6040;
 
 fn main() {
-    let dev = I2cdev::new("/dev/i2c-1").unwrap();
+    let dev = hal::I2cdev::new("/dev/i2c-1").unwrap();
     let mut sensor = Veml6040::new(dev);
     sensor.enable().unwrap();
 
@@ -15,7 +13,7 @@ fn main() {
     let white = sensor.read_white_channel().unwrap();
 
     println!(
-        "Measurements: red = {}, green = {}, blue = {}, white = {}",
+        "Measurements: R: {}, G: {}, B: {}, W: {}",
         red, green, blue, white
     );
 }
