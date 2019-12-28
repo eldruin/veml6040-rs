@@ -17,6 +17,6 @@ impl Register {
 }
 
 pub fn setup(expectations: &[I2cTransaction]) -> Veml6040<I2cMock> {
-    let i2c = I2cMock::new(&expectations);
+    let i2c = I2cMock::new(expectations);
     Veml6040::new(i2c)
 }
