@@ -28,11 +28,9 @@
 //! easily operated via the simple command format of I2C (SMBus compatible)
 //! interface protocol. VEML6040's operating voltage ranges from 2.5 V to 3.6 V.
 //!
-//! Datasheet:
-//! - [VEML6040](https://www.vishay.com/docs/84276/veml6040.pdf)
+//! Datasheet: [VEML6040](https://www.vishay.com/docs/84276/veml6040.pdf)
 //!
-//! Application note:
-//! - [VEML6040 AN](https://www.vishay.com/docs/84331/designingveml6040.pdf)
+//! Application note: [VEML6040 AN](https://www.vishay.com/docs/84331/designingveml6040.pdf)
 //!
 //! ## Usage examples (see also examples folder)
 //!
