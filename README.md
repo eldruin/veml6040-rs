@@ -1,11 +1,9 @@
-# Rust VEML6040 RGBW Color Sensor
+# Rust VEML6040 RGBW Color Sensor Driver
 
 [![crates.io](https://img.shields.io/crates/v/veml6040.svg)](https://crates.io/crates/veml6040)
 [![Docs](https://docs.rs/veml6040/badge.svg)](https://docs.rs/veml6040)
 [![Build Status](https://travis-ci.org/eldruin/veml6040-rs.svg?branch=master)](https://travis-ci.org/eldruin/veml6040-rs)
 [![Coverage Status](https://coveralls.io/repos/github/eldruin/veml6040-rs/badge.svg?branch=master)](https://coveralls.io/github/eldruin/veml6040-rs?branch=master)
-![Maintenance Intention](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg)
-
 
 This is a platform agnostic Rust driver for the VEML6040 RGBW color light
 sensor, based on the [`embedded-hal`] traits.
@@ -24,6 +22,7 @@ This driver allows you to:
 - Read measurement of all channels at once.
 
 ## The device
+
 VEML6040 color sensor senses red, green, blue, and white light and
 incorporates photodiodes, amplifiers, and analog / digital circuits into a
 single chip using CMOS process. With the color sensor applied, the
@@ -36,11 +35,14 @@ the output stable under changing temperature. VEML6040's function are
 easily operated via the simple command format of I2C (SMBus compatible)
 interface protocol. VEML6040's operating voltage ranges from 2.5 V to 3.6 V.
 
-Datasheet:
-- [VEML6040](https://www.vishay.com/docs/84276/veml6040.pdf)
+Datasheet: [VEML6040](https://www.vishay.com/docs/84276/veml6040.pdf)
 
-Application note:
-- [VEML6040 AN](https://www.vishay.com/docs/84331/designingveml6040.pdf)
+Application note: [VEML6040 AN](https://www.vishay.com/docs/84331/designingveml6040.pdf)
+
+## Support
+
+For questions, issues, feature requests, and other changes, please file an
+[issue in the github project](https://github.com/eldruin/isl29125-rs/issues).
 
 ## License
 
@@ -49,7 +51,9 @@ Licensed under either of
  * Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or
    http://www.apache.org/licenses/LICENSE-2.0)
  * MIT license ([LICENSE-MIT](LICENSE-MIT) or
-   http://opensource.org/licenses/MIT) at your option.
+   http://opensource.org/licenses/MIT)
+   
+at your option.
 
 ### Contributing
 
