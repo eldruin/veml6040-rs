@@ -137,7 +137,7 @@ pub enum Error<E> {
 }
 
 /// Possible measurement modes
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum MeasurementMode {
     /// Automatic mode.
     ///
@@ -152,7 +152,7 @@ pub enum MeasurementMode {
 }
 
 /// Integration time
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum IntegrationTime {
     /// 40 ms
     _40ms,
@@ -169,6 +169,7 @@ pub enum IntegrationTime {
 }
 
 /// Result of measurement of all channels
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct AllChannelMeasurement {
     /// Red channel measurement.
     pub red: u16,

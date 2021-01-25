@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-...
+### Changed
+- Make types `IntegrationTime` and `MeasurementMode` copyable.
+- Make type `AllChannelMeasurement` debuggable, clonable, copyable and comparable.
 
 ## 0.1.0 - 2018-10-23
 
