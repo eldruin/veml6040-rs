@@ -2,7 +2,7 @@
 
 [![crates.io](https://img.shields.io/crates/v/veml6040.svg)](https://crates.io/crates/veml6040)
 [![Docs](https://docs.rs/veml6040/badge.svg)](https://docs.rs/veml6040)
-[![Build Status](https://travis-ci.org/eldruin/veml6040-rs.svg?branch=master)](https://travis-ci.org/eldruin/veml6040-rs)
+[![Build Status](https://github.com/eldruin/veml6040-rs/workflows/Build/badge.svg)](https://github.com/eldruin/veml6040-rs/actions?query=workflow%3ABuild)
 [![Coverage Status](https://coveralls.io/repos/github/eldruin/veml6040-rs/badge.svg?branch=master)](https://coveralls.io/github/eldruin/veml6040-rs?branch=master)
 
 This is a platform agnostic Rust driver for the VEML6040 RGBW color light
