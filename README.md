@@ -72,7 +72,7 @@ fn main() {
 ## Support
 
 For questions, issues, feature requests, and other changes, please file an
-[issue in the github project](https://github.com/eldruin/isl29125-rs/issues).
+[issue in the github project](https://github.com/eldruin/veml6040-rs/issues).
 
 ## License
 

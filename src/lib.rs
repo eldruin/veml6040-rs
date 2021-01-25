@@ -104,6 +104,7 @@
 
 #![deny(unsafe_code)]
 #![deny(missing_docs)]
+#![doc(html_root_url = "https://docs.rs/veml6040/0.1.1")]
 #![no_std]
 
 use embedded_hal::blocking::i2c;
