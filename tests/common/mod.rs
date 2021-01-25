@@ -1,6 +1,4 @@
-extern crate embedded_hal_mock as hal;
-extern crate veml6040;
-use hal::i2c::{Mock as I2cMock, Transaction as I2cTransaction};
+use embedded_hal_mock::i2c::{Mock as I2cMock, Transaction as I2cTransaction};
 use veml6040::Veml6040;
 
 pub const DEVICE_ADDRESS: u8 = 0x10;

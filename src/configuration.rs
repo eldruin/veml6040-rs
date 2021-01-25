@@ -1,8 +1,7 @@
-extern crate embedded_hal as hal;
-use super::{
+use crate::{
     BitFlags, Error, IntegrationTime, MeasurementMode, Register, Veml6040, DEVICE_ADDRESS,
 };
-use hal::blocking::i2c;
+use embedded_hal::blocking::i2c;
 
 impl<I2C, E> Veml6040<I2C>
 where

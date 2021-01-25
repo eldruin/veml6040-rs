@@ -44,13 +44,9 @@
 //! ### Enable and read the color measurement
 //!
 //! ```no_run
-//! extern crate linux_embedded_hal as hal;
-//! extern crate veml6040;
-//!
-//! use hal::I2cdev;
+//! use linux_embedded_hal::I2cdev;
 //! use veml6040::Veml6040;
 //!
-//! # fn main() {
 //! let dev = I2cdev::new("/dev/i2c-1").unwrap();
 //! let mut sensor = Veml6040::new(dev);
 //! sensor.enable().unwrap();
@@ -62,19 +58,14 @@
 //!
 //! println!("Measurements: red = {}, green = {}, blue = {}, white = {}",
 //!          red, green, blue, white);
-//! # }
 //! ```
 //!
 //! ### Read all the channels at once
 //!
 //! ```no_run
-//! extern crate linux_embedded_hal as hal;
-//! extern crate veml6040;
-//!
-//! use hal::I2cdev;
+//! use linux_embedded_hal::I2cdev;
 //! use veml6040::Veml6040;
 //!
-//! # fn main() {
 //! let dev = I2cdev::new("/dev/i2c-1").unwrap();
 //! let mut sensor = Veml6040::new(dev);
 //! sensor.enable().unwrap();
@@ -84,50 +75,38 @@
 //! println!("Measurements: red = {}, green = {}, blue = {}, white = {}",
 //!          measurement.red, measurement.green, measurement.blue,
 //!          measurement.white);
-//! # }
 //! ```
 //!
 //! ### Set the integration time to 320ms
 //!
 //! ```no_run
-//! extern crate linux_embedded_hal as hal;
-//! extern crate veml6040;
-//!
-//! use hal::I2cdev;
+//! use linux_embedded_hal::I2cdev;
 //! use veml6040::{ Veml6040, IntegrationTime };
 //!
-//! # fn main() {
 //! let dev = I2cdev::new("/dev/i2c-1").unwrap();
 //! let mut sensor = Veml6040::new(dev);
 //! sensor.enable().unwrap();
 //! sensor.set_integration_time(IntegrationTime::_320ms).unwrap();
-//! # }
 //! ```
 //!
 //! ### Set the measurement mode to manual and trigger a measurement
 //!
 //! ```no_run
-//! extern crate linux_embedded_hal as hal;
-//! extern crate veml6040;
-//!
-//! use hal::I2cdev;
+//! use linux_embedded_hal::I2cdev;
 //! use veml6040::{ Veml6040, MeasurementMode };
 //!
-//! # fn main() {
 //! let dev = I2cdev::new("/dev/i2c-1").unwrap();
 //! let mut sensor = Veml6040::new(dev);
 //! sensor.enable().unwrap();
 //! sensor.set_measurement_mode(MeasurementMode::Manual).unwrap();
 //! sensor.trigger_measurement().unwrap();
-//! # }
 //! ```
 
 #![deny(unsafe_code)]
 #![deny(missing_docs)]
 #![no_std]
 
-extern crate embedded_hal as hal;
-use hal::blocking::i2c;
+use embedded_hal::blocking::i2c;
 
 /// All possible errors in this crate
 #[derive(Debug)]

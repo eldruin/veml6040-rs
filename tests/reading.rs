@@ -1,9 +1,6 @@
-extern crate embedded_hal_mock as hal;
-extern crate veml6040;
-use hal::i2c::Transaction as I2cTransaction;
-
+use embedded_hal_mock::i2c::Transaction as I2cTransaction;
 mod common;
-use common::{setup, Register, DEVICE_ADDRESS};
+use self::common::{setup, Register, DEVICE_ADDRESS};
 
 fn get_expectation(register: u8) -> [I2cTransaction; 1] {
     [I2cTransaction::write_read(
